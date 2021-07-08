@@ -5,6 +5,10 @@ import "@grapecity/spread-sheets-charts";
 import * as spreadExcel from "@grapecity/spread-excelio";
 import saveAs from "file-saver";
 
+const spreadjsKey = '';
+GC.Spread.Sheets.LicenseKey = spreadjsKey;
+spreadExcel.LicenseKey = spreadjsKey;
+
 const data = [
   {
     name: "A",
@@ -72,7 +76,6 @@ const ExcelExport = () => {
   };
 
   const importFile = async () => {
-    imporFiletAsync();
     const excelFile = await imporFiletAsync();
     const excelIO = new spreadExcel.IO();
     excelIO.open(
@@ -87,7 +90,7 @@ const ExcelExport = () => {
   };
 
   const imporFiletAsync = async () => {
-    const file = await fetch("/static/excel.xlsx");
+    const file = await fetch("/Book1.xlsx");
     const blobFile = await file.arrayBuffer();
     return blobFile;
   };
@@ -112,7 +115,7 @@ const ExcelExport = () => {
   };
 
   const addData = () => {
-    const sheet = spread.sheets[3];
+    const sheet = spread.sheets[1];
     sheet.tables.addFromDataSource("table1", 0, 0, data);
     const tableStyle = GC.Spread.Sheets.Tables.TableThemes.light1;
     const theTable = sheet.tables.findByName("table1");
